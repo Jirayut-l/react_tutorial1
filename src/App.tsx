@@ -10,7 +10,6 @@ import { Routes, Route, Link } from 'react-router-dom';
 function App() {
     return (
         <div className="App">
-            <div>
                 <h1>Example</h1>
                 <nav>
                     <ul>
@@ -31,9 +30,6 @@ function App() {
                     <Route path="/about" element={<About />} />
                     <Route path="/props" element={<PropsStates message={"Test Message"} title={"React Props & States"} />} />
                 </Routes>
-
-
-            </div>
         </div>
     );
 }
