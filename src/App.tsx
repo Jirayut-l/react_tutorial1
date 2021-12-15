@@ -1,29 +1,39 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import './PropsStates';
-import PropsStates from './PropsStates';
+import Home from './components/Home';
+import PropsStates from './components/PropsStates';
+import About from './components/About';
+import { Routes, Route, Link } from 'react-router-dom';
 
 
 function App() {
     return (
         <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo"/>
-                <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
-                </p>
-                <h3>React Typescript </h3>
-                <PropsStates message={"TextxX!"} title={"Hell React"}/>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
-            </header>
+            <div>
+                <h1>Example</h1>
+                <nav>
+                    <ul>
+                        <li>
+                            <Link to="/">Home</Link>
+                        </li>
+                        <li>
+                            <Link to="/about">About</Link>
+                        </li>
+                        <li>
+                            <Link to="/props">PropsStates</Link>
+                        </li>
+                    </ul>
+                </nav>
+                <hr/>
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/props" element={<PropsStates message={"Test Message"} title={"React Props & States"} />} />
+                </Routes>
+
+
+            </div>
         </div>
     );
 }
