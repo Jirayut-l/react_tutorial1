@@ -4,6 +4,7 @@ import './App.css';
 import Home from './components/Home';
 import PropsStates from './components/PropsStates';
 import About from './components/About';
+import NotFound from './components/NotFound';
 import { Routes, Route, Link } from 'react-router-dom';
 
 
@@ -29,6 +30,7 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/props" element={<PropsStates message={"Test Message"} title={"React Props & States"} />} />
+                    <Route path="*" element={<NotFound />} />
                 </Routes>
         </div>
     );
