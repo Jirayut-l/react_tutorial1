@@ -1,13 +1,14 @@
 import React, {useState} from 'react';
 
-interface Message {
-    title:string,
+//should type because  interface  instead  inheritance in typescript recommend
+type Message = {
+    title: string,
     message: string
 }
 // props & States
 const PropsStates = (props: Message) => {
-    const [count,setCount] = useState(0);
-    const [value,setValues] = useState(false);
+    const [count, setCount] = useState(0);
+    const [value, setValues] = useState(false);
     return (
         <div>
             <h1>{props.title}</h1>
@@ -25,7 +26,7 @@ const PropsStates = (props: Message) => {
             <button onClick={() => setValues(false)}>
                 Click False
             </button>
-            <p>{value?'true':'false'} </p>
+            <p>{value ? 'true' : 'false'} </p>
         </div>
     );
 };
