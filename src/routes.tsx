@@ -4,6 +4,8 @@ import DashboardApp from './pages/DashboardApp';
 import LogoOnlyLayout from './layouts/LogoOnlyLayout';
 import Login from './pages/Login';
 import NotFound from './components/NotFound';
+import AppBar from './pages/AppBar';
+
 
 export default function Routes() {
     return useRoutes([
@@ -19,8 +21,9 @@ export default function Routes() {
             path: '/',
             element: <LogoOnlyLayout/>,
             children: [
-                {path: 'login', element: <Login/>},
+                // {path: 'login', element: <Login/>},
                 {path: '404', element: <NotFound/>},
+                {path: 'appbar', element: <AppBar/> },
                 {path: '/', element: <Navigate to="/dashboard"/>},
                 {path: '*', element: <Navigate to="/404"/>}
             ]
