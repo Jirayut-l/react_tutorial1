@@ -1,3 +1,6 @@
+import {PostModel} from '../Post';
+import {Dispatch} from 'react';
+
 export enum ActionType {
     LOGIN = 'login',
     REGISTER = 'register',
@@ -7,20 +10,21 @@ export enum ActionType {
 
 export type userAction = {
     type: ActionType;
-    payload: string;
+    payload: payLoadModel;
 }
 
 export type userState = {
     user: string;
+    post: PostModel[];
 }
 
-export type  loginModel = {
+export type loginModel = {
     username: string,
     password: string,
     passwordRepeat: string
 }
 
-export type  themeModel = {
+export type themeModel = {
     primaryColor: string,
     secondaryColor: string
 }
@@ -28,3 +32,13 @@ export type LoginDataModel = {
     username: string;
     password: string;
 };
+
+export type payLoadModel = {
+    user: string;
+    post: PostModel;
+}
+
+export  type ContextPropsType = {
+    state: userState,
+    dispatch: Dispatch<userAction>
+}

@@ -1,17 +1,20 @@
 import Logout from './Logout';
 import Login from './Login';
-import React, {Dispatch} from 'react';
+import React, {Dispatch, useContext} from 'react';
 import {userAction} from '../reducers/action-type/AppBar';
 import Register from './Register';
+import {StateContext} from '../contexts/contexts';
 
-const UserBar = ({user, dispatch}: { user: string, dispatch: Dispatch<userAction> }) => {
+const UserBar = () => {
+    const {state, dispatch} = useContext(StateContext);
+    const {user} = state;
     if (user) {
-        return <Logout user={user} dispatch={dispatch} />
+        return <Logout user={user} dispatch={dispatch}/>
     } else {
         return (
             <>
-                <Login dispatch={dispatch} />
-                <Register dispatch={dispatch} />
+                <Login dispatch={dispatch}/>
+                <Register dispatch={dispatch}/>
             </>
         )
     }

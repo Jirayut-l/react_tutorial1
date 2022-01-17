@@ -1,13 +1,16 @@
-import {Dispatch, useState} from 'react';
+import {useContext, useState} from 'react';
 import {ActionType} from '../../reducers/action-type/AppBar';
-import {postAction, PostModel} from '../../reducers/action-type/Post';
+import {PostModel} from '../../reducers/action-type/Post';
+import {StateContext} from '../../contexts/contexts';
 
-const CreatePost = ({user, dispatch}: { user: string, dispatch: Dispatch<postAction> }) => {
+const CreatePost = () => {
+    const {state, dispatch} = useContext(StateContext);
+    const {user} = state
     const [postData, SetPostData] = useState<PostModel>({author: '', content: '', title: ''});
     return (
         <form onSubmit={e => {
             e.preventDefault();
-            dispatch({type: ActionType.CREATE_POST, payload: {title: postData.title, content: postData.content, author: user}})
+            dispatch({type: ActionType.CREATE_POST, payload: {user: user, post: {title: postData.title, content: postData.content, author: user}}})
         }}>
             <div>Author: <b>{user}</b></div>
             <div>

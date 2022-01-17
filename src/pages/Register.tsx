@@ -6,7 +6,7 @@ const Register = ({dispatch}: { dispatch: Dispatch<userAction> }) => {
     return (
         <form onSubmit={e => {
             e.preventDefault();
-            dispatch({type: ActionType.REGISTER, payload: loginData.username})
+            dispatch({type: ActionType.REGISTER, payload: {user: loginData.username, post: {title: '', content: '', author: ''}}})
         }}>
             <label htmlFor="register-username">Username:</label>
             <input type="text" onChange={event => SetLoginData({...loginData, username: event.target.value})} name="register-username" id="register-username"/>

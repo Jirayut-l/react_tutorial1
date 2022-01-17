@@ -1,5 +1,6 @@
-import React from 'react'
-import {themeModel} from '../reducers/action-type/AppBar';
+import React  ,{Dispatch} from 'react'
+import {ContextPropsType, themeModel} from '../reducers/action-type/AppBar';
 
-// export  const  StateContext = React.createContext()
-export  const ThemeContext = React.createContext<themeModel>({primaryColor: 'deepskyblue', secondaryColor: 'coral'})
+
+export const StateContext = React.createContext<ContextPropsType>({state: {user :'',post:[]}, dispatch:() => {} });
+export const ThemeContext = React.createContext<themeModel>({primaryColor: 'deepskyblue', secondaryColor: 'coral'})

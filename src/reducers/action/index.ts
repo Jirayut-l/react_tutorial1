@@ -1,11 +1,11 @@
 import {ActionType, userAction, userState} from '../action-type/AppBar';
-import {postAction, PostModel, postState} from '../action-type/Post';
+import {PostModel} from '../action-type/Post';
 
 const userReducer = (state: userState, action: userAction): string => {
     switch (action.type) {
         case ActionType.LOGIN:
         case ActionType.REGISTER:
-            return action.payload
+            return action.payload.user
         case ActionType.LOGOUT:
             return ''
         default:
@@ -13,25 +13,21 @@ const userReducer = (state: userState, action: userAction): string => {
     }
 }
 
-const postsReducer = (state: postState, action: postAction): PostModel[] => {
+const postsReducer = (state: userState, action: userAction): PostModel[] => {
     switch (action.type) {
         case ActionType.CREATE_POST:
-            const newPost: PostModel = {title: action.payload.title, content: action.payload.content, author: action.payload.author};
+            const newPost: PostModel = {title: action.payload.post.title, content: action.payload.post.content, author: action.payload.post.author};
             return [newPost, ...state.post];
         default:
             return state.post
     }
 }
 
-export function appReducer(state: userState, action: userAction): { user: string } {
+export function appReducer(state: userState, action: userAction): { user: string, post: PostModel[] } {
     return {
         user: userReducer(state, action),
-    }
-}
-
-export function appReducerPost(state: postState, action: postAction): { post: PostModel[] } {
-    return {
         post: postsReducer(state, action)
     }
 }
+
 
