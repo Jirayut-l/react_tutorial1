@@ -1,12 +1,12 @@
-import {themeModel} from '../reducers/action-type/AppBar';
-import React from 'react';
+import {themeModel} from '../reducers/action-type/theme';
+import React, {Dispatch} from 'react';
 
 const themeList: themeModel[] = [
     {primaryColor: 'deepskyblue', secondaryColor: 'coral'},
     {primaryColor: 'orchid', secondaryColor: 'mediumseagreen'}
 ]
 
-function ThemeItem({theme, active, onClick}: { theme: themeModel, active: boolean, onClick: React.Dispatch<React.SetStateAction<themeModel>> }) {
+function ThemeItem({theme, active, onClick}: { theme: themeModel, active: boolean, onClick: Dispatch<themeModel> }) {
     return (
         <span onClick={() => onClick(theme)} style={{cursor: 'pointer', paddingLeft: 8, fontWeight: active ? 'bold' : 'normal'}}>
             <span style={{color: theme.primaryColor}}>Primary</span> /
@@ -15,7 +15,7 @@ function ThemeItem({theme, active, onClick}: { theme: themeModel, active: boolea
     )
 }
 
-const ChangeTheme = ({theme, setTheme}: { theme: themeModel, setTheme: React.Dispatch<React.SetStateAction<themeModel>> }) => {
+const ChangeTheme = ({theme, setTheme}: { theme: themeModel, setTheme: Dispatch<themeModel> }) => {
     function isActive(themeValue: themeModel) {
         return themeValue.primaryColor === theme.primaryColor && themeValue.secondaryColor === theme.secondaryColor
     }

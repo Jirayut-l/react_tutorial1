@@ -1,44 +1,25 @@
 import {PostModel} from '../Post';
-import {Dispatch} from 'react';
 
 export enum ActionType {
     LOGIN = 'login',
     REGISTER = 'register',
     LOGOUT = 'logout',
-    CREATE_POST = 'createPost'
+    CREATE_POST = 'createPost',
+    DELETE_POST = 'deletePost'
 }
 
-export type userAction = {
+export type UserAction = {
     type: ActionType;
-    payload: payLoadModel;
+    payload: PayLoadModel;
 }
 
-export type userState = {
+export type UserState = {
     user: string;
     post: PostModel[];
 }
 
-export type loginModel = {
-    username: string,
-    password: string,
-    passwordRepeat: string
-}
-
-export type themeModel = {
-    primaryColor: string,
-    secondaryColor: string
-}
-export type LoginDataModel = {
-    username: string;
-    password: string;
-};
-
-export type payLoadModel = {
+export type PayLoadModel = {
     user: string;
     post: PostModel;
 }
 
-export  type ContextPropsType = {
-    state: userState,
-    dispatch: Dispatch<userAction>
-}

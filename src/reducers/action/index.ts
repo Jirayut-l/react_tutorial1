@@ -1,7 +1,7 @@
-import {ActionType, userAction, userState} from '../action-type/AppBar';
+import {ActionType, UserAction, UserState} from '../action-type/AppBar';
 import {PostModel} from '../action-type/Post';
 
-const userReducer = (state: userState, action: userAction): string => {
+const userReducer = (state: UserState, action: UserAction): string => {
     switch (action.type) {
         case ActionType.LOGIN:
         case ActionType.REGISTER:
@@ -13,17 +13,19 @@ const userReducer = (state: userState, action: userAction): string => {
     }
 }
 
-const postsReducer = (state: userState, action: userAction): PostModel[] => {
+const postsReducer = (state: UserState, action: UserAction): PostModel[] => {
     switch (action.type) {
         case ActionType.CREATE_POST:
-            const newPost: PostModel = {title: action.payload.post.title, content: action.payload.post.content, author: action.payload.post.author};
+            const newPost: PostModel = {id: action.payload.post.id, title: action.payload.post.title, content: action.payload.post.content, author: action.payload.post.author};
             return [newPost, ...state.post];
+        case ActionType.DELETE_POST:
+            return state.post.filter((item) => item.id !== action.payload.post.id)
         default:
             return state.post
     }
 }
 
-export function appReducer(state: userState, action: userAction): { user: string, post: PostModel[] } {
+export function appReducer(state: UserState, action: UserAction): { user: string, post: PostModel[] } {
     return {
         user: userReducer(state, action),
         post: postsReducer(state, action)

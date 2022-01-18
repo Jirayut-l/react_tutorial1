@@ -1,8 +1,10 @@
-import React, {useContext} from 'react'
+import React, {Dispatch, useContext} from 'react'
 import {PostModel} from '../../reducers/action-type/Post';
 import {ThemeContext} from '../../contexts/contexts';
+import {UserAction} from '../../reducers/action-type/AppBar';
 
-const Post = ({post}: { post: PostModel }) => {
+
+const Post = ({post }: { post: PostModel}) => {
     const context = useContext(ThemeContext);
     return (
         <>

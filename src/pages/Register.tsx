@@ -1,12 +1,16 @@
-import {Dispatch, useState} from 'react';
-import {ActionType, loginModel, userAction} from '../reducers/action-type/AppBar';
+import {useContext, useState} from 'react';
+import {ActionType} from '../reducers/action-type/AppBar';
+import {LoginModel,} from '../reducers/action-type/Login';
+import {StateContext} from '../contexts/contexts';
+import {PostModel} from '../reducers/action-type/Post';
 
-const Register = ({dispatch}: { dispatch: Dispatch<userAction> }) => {
-    const [loginData, SetLoginData] = useState<loginModel>({password: '', username: '', passwordRepeat: ''});
+const Register = () => {
+    const {dispatch} = useContext(StateContext);
+    const [loginData, SetLoginData] = useState<LoginModel>({password: '', username: '', passwordRepeat: ''});
     return (
         <form onSubmit={e => {
             e.preventDefault();
-            dispatch({type: ActionType.REGISTER, payload: {user: loginData.username, post: {title: '', content: '', author: ''}}})
+            dispatch({type: ActionType.REGISTER, payload: {user: loginData.username, post: {} as PostModel}})
         }}>
             <label htmlFor="register-username">Username:</label>
             <input type="text" onChange={event => SetLoginData({...loginData, username: event.target.value})} name="register-username" id="register-username"/>

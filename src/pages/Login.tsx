@@ -1,17 +1,19 @@
-import React, {Dispatch, useState} from 'react';
-import {ActionType, LoginDataModel, userAction} from '../reducers/action-type/AppBar';
+import React, {useContext, useState} from 'react';
+import {ActionType} from '../reducers/action-type/AppBar';
+import {LoginDataModel,} from '../reducers/action-type/Login';
+import {StateContext} from '../contexts/contexts';
+import {PostModel} from '../reducers/action-type/Post';
 
-const Login = ({dispatch}: { dispatch: Dispatch<userAction> }) => {
-    // const [loginData, SetLoginData] = useState<LoginDataModel[]>([ {username: 'test1',password:'test1234'},{username: 'test2',password:'test12342'}]);
+const Login = () => {
     const [loginData, SetLoginData] = useState<LoginDataModel>({password: '', username: ''});
-    // const [username, setUsername] = useState('');
+    const {dispatch} = useContext(StateContext);
 
     return (
         <>
             <label>{` Username:  ${loginData.username}  Password : ${loginData.password}`}</label>
             <form onSubmit={e => {
                 e.preventDefault();
-                dispatch({type: ActionType.LOGIN, payload: {user: loginData.username, post: {title: '', content: '', author: ''}}})
+                dispatch({type: ActionType.LOGIN, payload: {user: loginData.username, post: {} as PostModel}})
             }}>
                 <label htmlFor="login-username">Username:</label>
                 <input type="text" name="login-username" id="login-username" onChange={event => SetLoginData({...loginData, username: event.target.value})}/>
