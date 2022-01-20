@@ -4,10 +4,19 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter } from 'react-router-dom'
+import axios from 'axios';
+import {RequestProvider} from 'react-request-hook';
+
+const axiosInstance = axios.create({
+    baseURL : 'http://localhost:4000/'
+})
 
 ReactDOM.render(
+
  <BrowserRouter>
-    <App />
+     <RequestProvider value={axiosInstance} >
+         <App />
+     </RequestProvider>
  </BrowserRouter>,
   document.getElementById('root')
 );

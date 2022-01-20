@@ -1,12 +1,15 @@
 import {themeModel} from '../reducers/action-type/theme';
-import React, {Dispatch} from 'react';
+import React, {Dispatch, useEffect} from 'react';
+import {useResource} from 'react-request-hook';
+import {getApiThemes} from '../Api/api';
 
-const themeList: themeModel[] = [
-    {primaryColor: 'deepskyblue', secondaryColor: 'coral'},
-    {primaryColor: 'orchid', secondaryColor: 'mediumseagreen'}
-]
+// const themeList: themeModel[] = [
+//     {primaryColor: 'deepskyblue', secondaryColor: 'coral'},
+//     {primaryColor: 'orchid', secondaryColor: 'mediumseagreen'}
+// ]
 
-function ThemeItem({theme, active, onClick}: { theme: themeModel, active: boolean, onClick: Dispatch<themeModel> }) {
+
+const ThemeItem = ({theme, active, onClick}: { theme: themeModel, active: boolean, onClick: Dispatch<themeModel> }) => {
     return (
         <span onClick={() => onClick(theme)} style={{cursor: 'pointer', paddingLeft: 8, fontWeight: active ? 'bold' : 'normal'}}>
             <span style={{color: theme.primaryColor}}>Primary</span> /
@@ -16,14 +19,21 @@ function ThemeItem({theme, active, onClick}: { theme: themeModel, active: boolea
 }
 
 const ChangeTheme = ({theme, setTheme}: { theme: themeModel, setTheme: Dispatch<themeModel> }) => {
-    function isActive(themeValue: themeModel) {
+
+    const [themes, getThemes] = useResource(getApiThemes);
+    useEffect(() => {
+        getThemes()
+    }, [])
+
+    const isActive = (themeValue: themeModel) => {
         return themeValue.primaryColor === theme.primaryColor && themeValue.secondaryColor === theme.secondaryColor
     }
 
     return (
         <>
             Change theme:
-            {themeList.map((value, index) =>
+            {themes.isLoading && ' Loading themes...'}
+            {themes?.data?.map((value, index) =>
                 <ThemeItem key={`theme-${index}`} theme={value} active={isActive(value)} onClick={() => setTheme(value)}/>
             )}
         </>

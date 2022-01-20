@@ -8,16 +8,36 @@ import {themeModel} from '../reducers/action-type/theme';
 import {StateContext, ThemeContext} from '../contexts/contexts';
 import ChangeTheme from './ChangeTheme';
 import Header from '../components/Header';
+import {useResource} from 'react-request-hook';
+import {getApiPosts} from '../Api/api';
+import {ActionType, PayLoadModel} from '../reducers/action-type/AppBar';
+
 
 const defaultPosts: PostModel[] = [
-    {id:1, title: 'React Hooks', content: 'The greatest thing since sliced bread!', author: 'Daniel Bugl'},
-    {id:2, title: 'Using React Fragments', content: 'Keeping the DOM tree clean!', author: 'Daniel Bugl'}
+    {id: 1, title: 'React Hooks', content: 'The greatest thing since sliced bread!', author: 'Daniel Bugl'},
+    {id: 2, title: 'Using React Fragments', content: 'Keeping the DOM tree clean!', author: 'Daniel Bugl'}
 ]
 
 const AppBar = () => {
     const [stateValue, dispatchValue] = useReducer(appReducer, {user: '', post: defaultPosts});
     const [theme, setTheme] = useState<themeModel>({primaryColor: 'deepskyblue', secondaryColor: 'coral'});
-    const  {user} = stateValue;
+    const {user} = stateValue;
+    const [posts, getPosts] = useResource(getApiPosts);
+
+    useEffect(() => {
+        getPosts()
+    }, []);
+
+    useEffect(() => {
+       if(posts && posts.error){
+           dispatchValue({type:ActionType.POSTS_ERROR,payload: {} as PayLoadModel, data:[] })
+       }
+       if(posts && posts.data){
+           dispatchValue({type:ActionType.FETCH_POSTS, payload:{user:'',post:{} as PostModel}, data:posts.data})
+       }
+    }, [posts]);
+
+
     useEffect(() => {
         if (user) {
             document.title = `${user} - React Hooks Blog`

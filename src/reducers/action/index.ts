@@ -17,9 +17,11 @@ const postsReducer = (state: UserState, action: UserAction): PostModel[] => {
     switch (action.type) {
         case ActionType.CREATE_POST:
             const newPost: PostModel = {id: action.payload.post.id, title: action.payload.post.title, content: action.payload.post.content, author: action.payload.post.author};
-            return [newPost, ...state.post];
+            return [...state.post, newPost];
         case ActionType.DELETE_POST:
-            return state.post.filter((item) => item.id !== action.payload.post.id)
+            return state.post.filter((item) => item.id !== action.payload.post.id);
+        case   ActionType.FETCH_POSTS:
+            return action.data;
         default:
             return state.post
     }

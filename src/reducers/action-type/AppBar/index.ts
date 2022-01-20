@@ -5,12 +5,15 @@ export enum ActionType {
     REGISTER = 'register',
     LOGOUT = 'logout',
     CREATE_POST = 'createPost',
-    DELETE_POST = 'deletePost'
+    DELETE_POST = 'deletePost',
+    POSTS_ERROR = 'postsError',
+    FETCH_POSTS = 'fetchPost'
 }
 
 export type UserAction = {
     type: ActionType;
-    payload: PayLoadModel;
+    payload: PayLoadModel ;
+    data:PostModel[];
 }
 
 export type UserState = {

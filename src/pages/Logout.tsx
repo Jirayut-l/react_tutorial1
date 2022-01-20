@@ -9,7 +9,7 @@ const Logout = () => {
     return (
         <form onSubmit={event => {
             event.preventDefault();
-            dispatch({type: ActionType.LOGOUT, payload: {user: '', post: {} as PostModel }})
+            dispatch({type: ActionType.LOGOUT, payload: {user: '', post: {} as PostModel },data:[]})
         }}>
             Logged in as: <b>{user}</b>
             <input type="submit" value="Logout"/>

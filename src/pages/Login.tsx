@@ -13,7 +13,7 @@ const Login = () => {
             <label>{` Username:  ${loginData.username}  Password : ${loginData.password}`}</label>
             <form onSubmit={e => {
                 e.preventDefault();
-                dispatch({type: ActionType.LOGIN, payload: {user: loginData.username, post: {} as PostModel}})
+                dispatch({type: ActionType.LOGIN, payload: {user: loginData.username, post: {} as PostModel},data:[]})
             }}>
                 <label htmlFor="login-username">Username:</label>
                 <input type="text" name="login-username" id="login-username" onChange={event => SetLoginData({...loginData, username: event.target.value})}/>

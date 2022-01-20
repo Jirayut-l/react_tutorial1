@@ -9,15 +9,15 @@ const CreatePost = () => {
     const {user} = state
     const [postData, SetPostData] = useState<PostModel>({} as PostModel);
     const handleSubmit = (): void => {
-        SetPostData({title:'',content:'',id:0,author:''});
+        SetPostData({title: '', content: '', id: 0, author: ''});
     }
     const FindId = (): number => {
-        return state.post.length+ 1;
+        return state.post.length + 1;
     }
     return (
         <form onSubmit={e => {
             e.preventDefault();
-            dispatch({type: ActionType.CREATE_POST, payload: {user: user, post: {id: FindId(), title: postData.title, content: postData.content, author: user}}});
+            dispatch({type: ActionType.CREATE_POST, payload: {user: user, post: {id: FindId(), title: postData.title, content: postData.content, author: user}}, data: []});
             handleSubmit();
         }}>
             <div>Author: <b>{user}</b></div>

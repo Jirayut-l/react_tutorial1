@@ -10,7 +10,7 @@ const Register = () => {
     return (
         <form onSubmit={e => {
             e.preventDefault();
-            dispatch({type: ActionType.REGISTER, payload: {user: loginData.username, post: {} as PostModel}})
+            dispatch({type: ActionType.REGISTER, payload: {user: loginData.username, post: {} as PostModel}, data: []})
         }}>
             <label htmlFor="register-username">Username:</label>
             <input type="text" onChange={event => SetLoginData({...loginData, username: event.target.value})} name="register-username" id="register-username"/>
