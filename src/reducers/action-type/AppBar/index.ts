@@ -14,15 +14,19 @@ export type UserAction = {
     type: ActionType;
     payload: PayLoadModel ;
     data:PostModel[];
+
 }
 
 export type UserState = {
     user: string;
     post: PostModel[];
+    error: string;
+
 }
 
 export type PayLoadModel = {
     user: string;
     post: PostModel;
+    error : string;
 }
 

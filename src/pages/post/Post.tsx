@@ -1,10 +1,9 @@
-import React, {Dispatch, useContext} from 'react'
+import React, {useContext} from 'react'
 import {PostModel} from '../../reducers/action-type/Post';
 import {ThemeContext} from '../../contexts/contexts';
-import {UserAction} from '../../reducers/action-type/AppBar';
-
 
 const Post = ({post }: { post: PostModel}) => {
+    console.log('rendering Post')
     const context = useContext(ThemeContext);
     return (
         <>
@@ -15,4 +14,8 @@ const Post = ({post }: { post: PostModel}) => {
         </>
     )
 }
-export default Post;
+
+export default  React.memo( Post,(prevProps, nextProps) =>
+    prevProps.post.title===nextProps.post.title &&
+    prevProps.post.author=== nextProps.post.author &&
+    prevProps.post.content === nextProps.post.content );

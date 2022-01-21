@@ -27,10 +27,20 @@ const postsReducer = (state: UserState, action: UserAction): PostModel[] => {
     }
 }
 
-export function appReducer(state: UserState, action: UserAction): { user: string, post: PostModel[] } {
+const errorReducer = (state: UserState, action: UserAction): string => {
+    switch (action.type) {
+        case ActionType.POSTS_ERROR:
+            return 'Failed to Fetch Posts'
+        default:
+            return state.error
+    }
+}
+
+export function appReducer(state: UserState, action: UserAction): { user: string, post: PostModel[], error: string } {
     return {
         user: userReducer(state, action),
-        post: postsReducer(state, action)
+        post: postsReducer(state, action),
+        error: errorReducer(state, action)
     }
 }
 

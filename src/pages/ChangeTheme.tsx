@@ -1,13 +1,7 @@
 import {themeModel} from '../reducers/action-type/theme';
 import React, {Dispatch, useEffect} from 'react';
 import {useResource} from 'react-request-hook';
-import {getApiThemes} from '../Api/api';
-
-// const themeList: themeModel[] = [
-//     {primaryColor: 'deepskyblue', secondaryColor: 'coral'},
-//     {primaryColor: 'orchid', secondaryColor: 'mediumseagreen'}
-// ]
-
+import {apiGetThemes} from '../Api/api';
 
 const ThemeItem = ({theme, active, onClick}: { theme: themeModel, active: boolean, onClick: Dispatch<themeModel> }) => {
     return (
@@ -20,7 +14,7 @@ const ThemeItem = ({theme, active, onClick}: { theme: themeModel, active: boolea
 
 const ChangeTheme = ({theme, setTheme}: { theme: themeModel, setTheme: Dispatch<themeModel> }) => {
 
-    const [themes, getThemes] = useResource(getApiThemes);
+    const [themes, getThemes] = useResource(apiGetThemes);
     useEffect(() => {
         getThemes()
     }, [])
@@ -28,7 +22,6 @@ const ChangeTheme = ({theme, setTheme}: { theme: themeModel, setTheme: Dispatch<
     const isActive = (themeValue: themeModel) => {
         return themeValue.primaryColor === theme.primaryColor && themeValue.secondaryColor === theme.secondaryColor
     }
-
     return (
         <>
             Change theme:

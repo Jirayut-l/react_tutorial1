@@ -1,15 +1,87 @@
 {
   "posts": [
-    { "id": "1", "title": "React Hooks", "content": "The greatest thing since sliced bread!", "author": "Daniel Bugl" },
-    { "id": "2", "title": "Using React Fragments", "content": "Keeping the DOM tree clean!", "author": "Daniel Bugl" },
-    { "id": "3", "title": "Using React Fragments X3", "content": "Loeme Loeme!", "author": "Jacob Xl" }
+    {
+      "id": "1",
+      "title": "React Hooks",
+      "content": "The greatest thing since sliced bread!",
+      "author": "Daniel Bugl"
+    },
+    {
+      "id": "2",
+      "title": "Using React Fragments",
+      "content": "Keeping the DOM tree clean!",
+      "author": "Daniel Bugl"
+    },
+    {
+      "id": "3",
+      "title": "Using React Fragments X3",
+      "content": "Loeme Loeme!",
+      "author": "Jacob Xl"
+    },
+    {
+      "id": 4,
+      "title": "TTT",
+      "content": "eeee",
+      "author": "test1"
+    },
+    {
+      "id": 5,
+      "title": "TTT",
+      "content": "eeee",
+      "author": "test1"
+    },
+    {
+      "id": 6,
+      "title": "TT",
+      "content": "SSSS",
+      "author": "test1"
+    },
+    {
+      "id": 7,
+      "title": "SS",
+      "content": "asdasd",
+      "author": "test1"
+    },
+    {
+      "id": 8,
+      "title": "TTT",
+      "content": "TTTee",
+      "author": "test1"
+    }
   ],
   "users": [
-    { "id": 1, "username": "Daniel Bugl", "password": "supersecure42" }
+    {
+      "id": 1,
+      "username": "Daniel Bugl",
+      "password": "supersecure42"
+    },
+    {
+      "id": 2,
+      "username": "test1",
+      "password": "P@ssw0rd"
+    },
+    {
+      "password": "Test2",
+      "username": "Test2",
+      "passwordRepeat": "Test2",
+      "id": 3
+    }
   ],
   "themes": [
-    { "id": 1, "primaryColor": "deepskyblue", "secondaryColor": "coral" },
-    { "id": 2, "primaryColor": "orchid", "secondaryColor": "mediumseagreen" },
-    { "id": 3, "primaryColor": "darkslategray", "secondaryColor": "slategray" }
+    {
+      "id": 1,
+      "primaryColor": "deepskyblue",
+      "secondaryColor": "coral"
+    },
+    {
+      "id": 2,
+      "primaryColor": "orchid",
+      "secondaryColor": "mediumseagreen"
+    },
+    {
+      "id": 3,
+      "primaryColor": "darkslategray",
+      "secondaryColor": "slategray"
+    }
   ]
 }

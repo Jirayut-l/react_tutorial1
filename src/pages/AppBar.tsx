@@ -1,4 +1,4 @@
-import React, {useReducer, useEffect, useState} from 'react'
+import React, {useReducer, useEffect, useState, Suspense} from 'react'
 import UserBar from './UserBar';
 import {appReducer} from '../reducers/action';
 import {PostModel} from '../reducers/action-type/Post';
@@ -9,32 +9,29 @@ import {StateContext, ThemeContext} from '../contexts/contexts';
 import ChangeTheme from './ChangeTheme';
 import Header from '../components/Header';
 import {useResource} from 'react-request-hook';
-import {getApiPosts} from '../Api/api';
+import {apiGetPosts} from '../Api/api';
 import {ActionType, PayLoadModel} from '../reducers/action-type/AppBar';
 
 
-const defaultPosts: PostModel[] = [
-    {id: 1, title: 'React Hooks', content: 'The greatest thing since sliced bread!', author: 'Daniel Bugl'},
-    {id: 2, title: 'Using React Fragments', content: 'Keeping the DOM tree clean!', author: 'Daniel Bugl'}
-]
-
 const AppBar = () => {
-    const [stateValue, dispatchValue] = useReducer(appReducer, {user: '', post: defaultPosts});
+    const [stateValue, dispatchValue] = useReducer(appReducer, {user: '', post: [], error: ''});
     const [theme, setTheme] = useState<themeModel>({primaryColor: 'deepskyblue', secondaryColor: 'coral'});
-    const {user} = stateValue;
-    const [posts, getPosts] = useResource(getApiPosts);
-
+    const {user, error} = stateValue;
+    const [posts, getPosts] = useResource(apiGetPosts);
+    {
+        console.log(posts)
+    }
     useEffect(() => {
         getPosts()
     }, []);
 
     useEffect(() => {
-       if(posts && posts.error){
-           dispatchValue({type:ActionType.POSTS_ERROR,payload: {} as PayLoadModel, data:[] })
-       }
-       if(posts && posts.data){
-           dispatchValue({type:ActionType.FETCH_POSTS, payload:{user:'',post:{} as PostModel}, data:posts.data})
-       }
+        if (posts && posts.error) {
+            dispatchValue({type: ActionType.POSTS_ERROR, payload: {} as PayLoadModel, data: []})
+        }
+        if (posts && posts.data) {
+            dispatchValue({type: ActionType.FETCH_POSTS, payload: {user: '', post: {} as PostModel, error: ''}, data: posts.data})
+        }
     }, [posts]);
 
 
@@ -52,12 +49,15 @@ const AppBar = () => {
                     <Header text={'React Hook Blog'}/>
                     <ChangeTheme theme={theme} setTheme={setTheme}/>
                     <br/>
-                    <UserBar/>
+                    <Suspense fallback={<h3>Loading...</h3>}>
+                        <UserBar/>
+                    </Suspense>
                     <h5> {JSON.stringify(stateValue.post)} </h5>
                     <br/>
                     {user && <CreatePost/>}
                     <br/>
                     <hr/>
+                    {error && <b>{error}</b>}
                     <PostList/>
                 </div>
             </ThemeContext.Provider>

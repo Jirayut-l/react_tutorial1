@@ -11,7 +11,7 @@ const PostList = () => {
             {post.map((post, index) => (
                 <React.Fragment key={`post-${index}`}>
                     <Post post={post}/>  &nbsp;
-                    <button value={'Delete'} onClick={() => dispatch({type: ActionType.DELETE_POST, payload: {user: state.user, post: post}, data: []})}> Delete</button>
+                    <button value={'Delete'} onClick={() => dispatch({type: ActionType.DELETE_POST, payload: {user: state.user, post: post,error:''}, data: []})}> Delete</button>
                     <hr/>
                 </React.Fragment>
             ))}
