@@ -26,26 +26,8 @@
     },
     {
       "id": 5,
-      "title": "TTT",
-      "content": "eeee",
-      "author": "test1"
-    },
-    {
-      "id": 6,
-      "title": "TT",
-      "content": "SSSS",
-      "author": "test1"
-    },
-    {
-      "id": 7,
-      "title": "SS",
-      "content": "asdasd",
-      "author": "test1"
-    },
-    {
-      "id": 8,
-      "title": "TTT",
-      "content": "TTTee",
+      "title": "Test1",
+      "content": "XX23",
       "author": "test1"
     }
   ],

@@ -30,7 +30,7 @@ const postsReducer = (state: UserState, action: UserAction): PostModel[] => {
 const errorReducer = (state: UserState, action: UserAction): string => {
     switch (action.type) {
         case ActionType.POSTS_ERROR:
-            return 'Failed to Fetch Posts'
+            return action.payload.error
         default:
             return state.error
     }

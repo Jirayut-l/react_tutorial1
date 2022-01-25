@@ -12,6 +12,14 @@ export const apiGetThemes = () => {
         });
 }
 
+export const apiDeletePosts = (id: number) => {
+    return request(
+        {
+            method: HttpMethod.DELETE,
+            url: `/posts/${id}`
+        });
+}
+
 export const apiGetPosts = () => {
     return request<PostModel []>(
         {
@@ -19,6 +27,15 @@ export const apiGetPosts = () => {
             url: '/posts'
         });
 }
+
+export const apiGetPostsById = (id: string) => {
+    return request<PostModel>(
+        {
+            method: HttpMethod.GET,
+            url: `/posts/${id}`
+        });
+}
+
 
 export const apiCreatePosts = (post: PostModel) => {
     return request<PostModel>({
